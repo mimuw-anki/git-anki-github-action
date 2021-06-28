@@ -1,9 +1,11 @@
 name: git-anki-generate-deck
-description: Generates anki deck from git-anki formatted files in repo.
 
-branding:
-  color: yellow
-  icon: aperture
+# Marketplace data. Might be useful once we figure out how to use it as a module.
+# description: Generates anki deck from git-anki formatted files in repo.
+
+# branding:
+#   color: yellow
+#   icon: aperture
   
 # Controls when the workflow will run
 on:
