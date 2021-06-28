@@ -1,0 +1,35 @@
+name: git-anki-generate-deck
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build_release:
+    name: build_release
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: get git-anki
+        run: git clone https://github.com/mimuw-anki/git-anki.git && pip3 install -r git-anki/requirements.txt
+      - name: build
+        run: cd git-anki && python3 main.py release ..
+      - name: release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          tag_name: ${{ github.run_id }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: upload deck
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./deck.apkg
+          asset_name: deck.apkg
+          asset_content_type: application/zip
