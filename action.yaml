@@ -4,8 +4,17 @@ description: Generates anki deck from git-anki formatted files in repo.
 branding:
   color: yellow
   icon: aperture
+  
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
 
-on: [push, pull_request, workflow_dispatch]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   build_release:
