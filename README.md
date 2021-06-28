@@ -2,4 +2,4 @@
 Github action autogenerating flashcards from git-anki format.
 
 ## Usage
-Copy action.yaml to .github/wokrflows/action.yaml in your repository.
+Copy action.yaml to .github/workflows/action.yaml in your repository.
