@@ -29,17 +29,22 @@ jobs:
           fetch-depth: 0
       - name: get git-anki
         run: git clone https://github.com/mimuw-anki/git-anki.git && pip3 install -r git-anki/requirements.txt
-      - name: build
+      - name: generate
         run: cd git-anki && python3 main.py release ..
+      - name: Get Time
+        id: time
+        uses: nanzm/get-time-action@v1.1
+        with:
+          timeZone: 0
+          format: 'YYYY-MM-DD-HH-mm-ss'
       - name: release
         uses: actions/create-release@v1
         id: create_release
         with:
           draft: false
           prerelease: false
-          tag_name: ${{ github.run_id }}
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+          tag_name: ${{ steps.time.outputs.time }}
+          release_name: Generated deck
       - name: upload deck
         uses: actions/upload-release-asset@v1
         env:
