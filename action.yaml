@@ -5,7 +5,7 @@ branding:
   color: yellow
   icon: aperture
 
-on: [push, workflow_dispatch]
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build_release:
