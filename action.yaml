@@ -1,4 +1,7 @@
 name: git-anki-generate-deck
+description: Generates anki deck from git-anki formatted files in repo.
+color: yellow
+icon: aperture
 
 on: [push, workflow_dispatch]
 
